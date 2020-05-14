@@ -1,9 +1,8 @@
 package org.acme.business.test;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @author Alexander Hofmeister
@@ -12,12 +11,15 @@ import javax.persistence.OneToOne;
 public class TestEntity {
 
   @Id
-  @GeneratedValue
   public Long id;
 
   public String name;
 
-  @OneToOne
-  public TestEntity user;
+  @PrePersist
+  void prePersist() {
+    if (id == null) {
+      id = ThreadLocalRandom.current().nextLong(1000);
+    }
+  }
 
 }

@@ -12,37 +12,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @EntityView(TestEntity.class)
 @CreatableEntityView
-public abstract class TestCreate {
+public interface TestCreate {
 
   @IdMapping
-  @JsonIgnore // not ignored?
-  abstract Long getId();
+  Long getId();
 
-  // no setter, but I can create it?
-  abstract String getName();
+  String getName();
 
-  @JsonIgnore// OK
-  String getS() {
-    return getName() + "";
-  }
+  void setName(String name);
 
-  abstract EntityViewManager evm();
-
-  @JsonIgnore // not ignored
-  protected abstract TestId getUser();
-
-  @JsonIgnore // it is ignored due processing,
-  // but I would like to have an error for unknown attribute?
-  protected abstract void setUser(TestId user);
-
-  // OK
-  public Long getUserId() {
-    return getUser() == null ? null : getUser().getId();
-  }
-
-  // OK
-  protected void setUserId(Long userId) {
-    setUser(userId == null ? null : evm().getReference(TestId.class, userId));
-  }
+  void setId(Long id);
 
 }

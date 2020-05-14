@@ -26,9 +26,7 @@ public class TestResource {
   @Transactional
   @Produces(MediaType.APPLICATION_JSON)
   public TestCreate add(TestCreate view) {
-    TestEntity entity = new TestEntity();
-    entity.id = 1L;
-    entityManager.merge(entity);
+    System.out.println(view.getId()); // why null?
     entityViewManager.save(entityManager, view);
     return view;
   }

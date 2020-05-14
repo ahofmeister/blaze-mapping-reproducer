@@ -51,7 +51,7 @@ public class EntityViewParamConverterProvider
           } else {
             this.entityViewAwareObjectMapper =
                 entityViewAwareObjectMapper = new EntityViewAwareObjectMapper(
-                    entityViewManager.get(), new ObjectMapper());
+                    entityViewManager.get(), new ObjectMapper(), null);
           }
         }
       }
