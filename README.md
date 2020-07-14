@@ -1,5 +1,5 @@
 # Start server
-mvn quarkus:dev
+mvn quarkus:dev and hit `localhost:8081/recipes`
 # try to post 
-sh post.sh
+sh request.sh
 
